@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id: downCueGraph.R 3300 2013-02-22 11:41:59Z cokelaer $
+# $Id$
 downCueGraph <-
 function(cue,graph,stopNodes){
   

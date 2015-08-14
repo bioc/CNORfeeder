@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id: upSignalGraph.R 3300 2013-02-22 11:41:59Z cokelaer $
+# $Id$
 upSignalGraph <-
 function(signal,graph,stopNodes){
   

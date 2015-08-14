@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id: linksRanking.R 3300 2013-02-22 11:41:59Z cokelaer $
+# $Id$
 linksRanking <-
 function(CNOlist, measErr=c(0.1, 0), savefile=FALSE){
   
