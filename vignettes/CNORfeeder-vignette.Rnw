@@ -50,15 +50,17 @@ how to install R packages, please refer to
 \url{http://cran.r-project.org/doc/manuals/R-admin.html#Installing-packages}.
 This package relies on several Bioconductor packages (CellNOptR, RBGL, graph, minet) and CRAN packages (igraph catnet). The following code installs the \emph{CNORfeeder} dependencies and suggested packages that are on Bioconductor website, open an R session and type:
 <<installBio, eval=FALSE>>=
-source("http://bioconductor.org/biocLite.R")
-biocLite(c("RBGL","graph","minet","CellNOptR","igraph","catnet"))
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("RBGL","graph","minet","CellNOptR","igraph","catnet"))
 @
 
 Before starting this tutorial you also need to install the package
 \emph{CNORfeeder}. You can either install \emph{CNORfeeder} from Bioconductor by typing:
 <<installPackage, eval=FALSE>>=
-source("http://bioconductor.org/biocLite.R")
-biocLite("CNORfeeder")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("CNORfeeder")
 @
 
 or from a tar ball as follows:
