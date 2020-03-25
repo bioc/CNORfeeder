@@ -37,10 +37,10 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0, simData 
   if(is.null(simData)){
     
     simData <- list()
-    for(ii in 1:length(cnolist@signals)){
+    for(ii in 1:length(cnolist$valueSignals)){
       
-      mm <- matrix(data = 0, nrow = nrow(cnolist@signals[[ii]]), ncol = ncol(cnolist@signals[[ii]]))
-      colnames(mm) <- colnames(cnolist@signals[[ii]])
+      mm <- matrix(data = 0, nrow = nrow(cnolist$valueSignals[[ii]]), ncol = ncol(cnolist$valueSignals[[ii]]))
+      colnames(mm) <- colnames(cnolist$valueSignals[[ii]])
       
       simData[[length(simData)+1]] <- mm
     }
