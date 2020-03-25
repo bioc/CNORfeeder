@@ -109,10 +109,22 @@ simData = plotLBodeFitness(cnolist = cnolist, model = model,
 
 Identifying the mis-fits (measurements with mse worse than 0.05) and interactions from the database which we want to integrate (on this case only through data-driven method)
 ```R
+## Identifying which measured nodes at which experimental condition have a worse
+## fit in terms of mse value compared to the specified threshold mseThresh value
 indices = identifyMisfitIndices(cnolist = cnolist, model = model, 
                                     simData = simData, mseThresh = 0.05)
+                                    
+## Alternatively, users can bypass the initial training of the model and add
+## new links through the FEED or database search regardless how well some 
+## measurements were already fitted simply by setting simData=NULL
+# indices = identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL)
+
+## Obtaining the object indicating which measurements at which condition are
+## poorly fitted
 feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist, 
                                 indices = indices, database = NULL, DDN = TRUE)
+
+## Integration of new links
 integratedModel = integrateLinks(feederObject = feederObject, 
                                                   cnolist = cnolist)
 ```

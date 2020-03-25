@@ -21,15 +21,32 @@
 # Inputs:
 # Mandatory:  A cnolist object containing the data (cnolist)
 #             A model to optimize (model)
-#             A simulation data object for a specific set of dynamic parameters as returned by the getLBodeSimFunction.R function (simData)
-# Optional:   A thrreshold parameter for minimal misfit to be considered (mseThresh = 0.05 by default)
+#             A simulation data object for a specific set of dynamic parameters as returned by the getLBodeSimFunction.R function (simData=NULL by default)
+# Optional:   A thrreshold parameter for minimal misfit to be considered (mseThresh = 0 by default)
 
-computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0.05, simData = simData){
+computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0, simData = NULL){
   
   ##
   # Compacting cnolist
   if(class(cnolist)=="CNOlist"){
     cnolist = compatCNOlist(object = cnolist)
+  }
+  
+  ##
+  # Generating simData if is NULL
+  if(is.null(simData)){
+    
+    simData <- list()
+    for(ii in 1:length(cnolist@signals)){
+      
+      mm <- matrix(data = 0, nrow = nrow(cnolist@signals[[ii]]), ncol = ncol(cnolist@signals[[ii]]))
+      colnames(mm) <- colnames(cnolist@signals[[ii]])
+      
+      simData[[length(simData)+1]] <- mm
+    }
+    
+    mseThresh <- 0
+    
   }
   
   ##
@@ -121,7 +138,7 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0.05, simDa
     
     for(j in 1:ncol(mse)){
       
-      if((mse[i, j] > mseThresh) && !is.na(mse[i, j])){
+      if((mse[i, j] >= mseThresh) && !is.na(mse[i, j])){
         
         indices[[length(indices)+1]] <- c(j, i, mse[i, j])
         
