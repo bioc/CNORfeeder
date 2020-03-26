@@ -28,7 +28,7 @@
 
 buildFeederObjectDynamic <- function(model = model, cnolist = cnolist, 
                                      indices = indices, database = NULL, 
-                                     DDN = TRUE, pathLength = 3, k = 2, 
+                                     DDN = TRUE, pathLength = 2, k = 2, 
                                      measErr = c(0.1, 0), timePoint = NA){
   
   ##

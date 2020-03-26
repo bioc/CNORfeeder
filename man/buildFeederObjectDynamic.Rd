@@ -19,7 +19,7 @@ buildFeederObjectDynamic(model = model, cnolist = cnolist, indices = indices, da
   \item{model}{a model as returned by readSIF. Alternatively, the filename can also be provided}
   \item{indices}{a list of indices of poorly fitted measurements as returned from \link{identifyMisfitIndices}}
   \item{database}{a database of interactions which can be optionally provided as an interaction matrix with 3 or 4 colums (source of interaction, sign of interaction, target of interaction and optionally a weight value from 0 to 1 indicating the significance of that interaction in the database). Default: database=NULL}
-  \item{pathLength}{a path length parameter for the maximal path length of additional interactions to search for in the database. Default: pathLength = 3}
+  \item{pathLength}{a path length parameter for the maximal path length of additional interactions to search for in the database. Default: pathLength = 2}
   \item{DDN}{a parameter indicating whether integrating links inferred from the Data-Driven FEED approach. Default: DDN = TRUE}
   \item{k}{a parameter that determine the threshold of significancy of the effect of stimuli and inhibitors, default to 2}
   \item{measErr}{a 2 value vector (err1, err2) defining the error model of the data as sd^2 = err1^2 + (err2*data)^2, default to c(0.1, 0)}
