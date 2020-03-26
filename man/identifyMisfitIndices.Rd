@@ -10,15 +10,15 @@
 }
 
 \usage{
-identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05)
+identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL, mseThresh = 0)
 }
 
 
 \arguments{
   \item{cnolist}{a cnolist structure, as produced by \link{makeCNOlist}}
   \item{model}{a model as returned by readSIF. Alternatively, the filename can also be provided.}
-  \item{simData}{a matrix of simulated data values for a specific model as returned by plotLBodeFitness)}
-  \item{mseThresh}{thrreshold parameter for minimal misfit to be considered (mseThresh = 0.05 by default)}
+  \item{simData}{a matrix of simulated data values for a specific model as returned by plotLBodeFitness (default set to NULL in which case users do not need to do an initial fit of the model and the FEED algorithm will search for new links indiscriminately)}
+  \item{mseThresh}{thrreshold parameter for minimal misfit to be considered - if the initial fit (mse) for a node in a specific condition is larger/wrose than the threshold value, it will be considered as poorly fitted (mseThresh = 0 by default)}
 }
 \details{
 This function computes the misfits (MSE values) between the actual measured data points and the data values for a specific set of inferred model parameters. Once the MSE values are calculated for each of the measurements over each experimental condition, the poorly fitted measurements are then identify. A measurement is considered as poorly fitted if the corresponding inferred MSE value is higher than the specified MSE threshold value (mseThresh).
