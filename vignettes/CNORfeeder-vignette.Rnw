@@ -373,6 +373,13 @@ indices = identifyMisfitIndices(cnolist = cnolist, model = model,
 
 The \emph{indices} object which is returned represents a list of indices telling which measurement and at which experimental condition is poorly predicted by our model. It also contains an \emph{mse} matrix indicating the misfit between our initial model predictions for each observation (quantifide by the Mean Squared Error value).
 
+Alternatively, users can bypass the initial training of the model and add new links through the FEED or database search regardless how well somee measurements were already fitted simply by setting simData=NULL. In this case:
+
+<<results, eval=FALSE, results=hide>>=
+# Identifying the mis-fits (measurements with mse worse than 0.05)
+indices = identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL)
+@
+
 \subsection{III. Integration}
 
 After identifying the poorly-fitted measurements, we then try to find possible links between corresponding cues and measurements and which can potentially identify mising mechanisms which yielded the poor prediction. The user can either do a search from the \emph{database} object, derivel the links from data-alone based on the \emph{FEED} algorithm, or both. Below we show an example about how we can infer interactions from both approaches and show the new expanded PKN with newly integrated links colored in purple \ref{fig:feeder_model}:
