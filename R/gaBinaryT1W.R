@@ -33,7 +33,7 @@ gaBinaryT1W<-function(
 		
 
     # by default initial bit string is made of ones.
-    if (is.null(initBstring)==TRUE){
+    if (is.null(initBstring)){
         initBstring<-rep(1,length(model$reacID))
     }
 
