@@ -9,7 +9,6 @@ export("Binference",
     "MIinference",
     "weighting",
     "buildFeederObjectDynamic",
-    "computeMSE",
     "identifyMisfitIndices",
     "integrateLinks",
     "runDynamicFeeder")

@@ -57,12 +57,11 @@ modelIntegrWeight <- weighting(modelIntegr=modelIntegr, PKNmodel=DreamModel,
                               CNOlist=CNOlistDREAM, integrFac=10)
 
 # E. TRAINING - CellNOptR
-initBstring<-rep(1,length(modelIntegr$reacID))
+# initBstring<-rep(1,length(modelIntegr$reacID))
 # training to data using genetic algorithm (run longer to obtain better results)
 DreamT1opt<-gaBinaryT1W(
 CNOlist=CNOlistDREAM,
 	model=modelIntegrWeight,
-	initBstring=initBstring,
 	maxGens=2,
 	popSize=5,
 	verbose=FALSE)

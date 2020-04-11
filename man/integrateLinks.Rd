@@ -10,7 +10,7 @@
 }
 
 \usage{
-integrateLinks(feederObject = feederObject, cnolist = cnolist, database = database)
+integrateLinks(feederObject = feederObject, cnolist = cnolist, database = NULL)
 }
 
 

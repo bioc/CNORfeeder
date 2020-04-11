@@ -1,11 +1,12 @@
 Package: CNORfeeder
 Type: Package
 Title: Integration of CellNOptR to add missing links
-Version: 1.27.5
-Date: 2020-10-04
+Version: 1.27.6
+Date: 2020-11-04
 Author: F.Eduati, E. Gjerga
 Maintainer: E.Gjerga <enio.gjerga@gmail.com>
 Depends: R (>= 3.6.0), CellNOptR (>= 1.4.0), graph
+Enhances: MEIGOR
 Suggests: minet, catnet, Rgraphviz, RUnit, BiocGenerics, igraph
 biocViews: CellBasedAssays, CellBiology, Proteomics, NetworkInference
 Description: This package integrates literature-constrained and data-driven methods to infer signalling networks from perturbation experiments. It permits to extends a given network with links derived from the data via various inference methods and uses information on physical interactions of proteins to guide and validate the integration of links.
