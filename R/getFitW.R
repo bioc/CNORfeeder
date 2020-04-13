@@ -52,7 +52,7 @@ getFitW<-function(
 
     # if t0 is provided and we are interested in t1
     # then  score is based on t1 but also t0
-    if (tPt == 2 && is.na(simResultsT0)==FALSE){
+    if (tPt == 2 && any(is.na(simResultsT0))==FALSE){
 		# needed only for consistency between version 1.4 and following ones (following ones already cut the simList)
 		if (dim(simResultsT0)[2]!=length(indexList$signals)){
 			simResultsT0<-simResultsT0[,indexList$signals]
