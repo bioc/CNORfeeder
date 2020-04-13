@@ -208,10 +208,9 @@ Users can include their own interaction network passing it as argument \emph{PPI
 The integrated network can be optimized using \emph{CellNOptR}; the function \emph{gaBinaryT1W} of \emph{CNORfeeder} package is a slightly modified version of \emph{gaBinaryT1} function of package \emph{CellNOptR} in order to take into account the different weigths that can be assigned to each link. A bipartite objective function is used to balance fit and size, that is to find the model which best describe data with the minumum number of links (see \cite{julio2009} and the vignette of \emph{CellNOptR} for a comprehensive description).
 
 <<train, eval=FALSE>>=
-initBstring<-rep(1,length(modelIntegrWeight$reacID))
 # training to data using genetic algorithm (run longer to obtain better results)
 DreamT1opt<-gaBinaryT1W(CNOlist=CNOlistDREAM, model=modelIntegrWeight,
-                        initBstring=initBstring, maxGens=2, popSize=5, verbose=FALSE)
+                        maxGens=2, popSize=5, verbose=FALSE)
 @
 
 The optimal model and the simulated and real data (shown in Figure~\ref{fig:training}) can be visualized using the following commands of \emph{CellNOptR}:
@@ -262,7 +261,7 @@ Through the figure below \ref{fig:dyn_pipeline}, we show a step by-step summary 
 
 Loading the necessary packages and the toy example containing 16 interactions and 15 species (of which 2 are stimulated, 2 are inhibited and 7 are measrued). Data was generated in-silico across each measuremnt at each perturbation experimental condition for 3 time-points (0, 10, 30).
 
-<<results, eval=TRUE, results=hide>>=
+<<results, eval=FALSE, results=hide>>=
 # loading the necessary packages
 library(CellNOptR)
 library(MEIGOR)

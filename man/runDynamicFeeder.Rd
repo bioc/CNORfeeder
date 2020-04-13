@@ -10,14 +10,14 @@
 }
 
 \usage{
-runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, paramsSSm = paramsSSm, penFactor_k = 2)
+runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, penFactor_k = 2, penFactor_tau = 1, penFactorPIN_k = 10, paramsSSm = defaultParametersSSm())
 }
 
 
 \arguments{
   \item{cnolist}{a cnolist structure, as produced by \link{makeCNOlist}}
   \item{integratedModel}{the integrated model as returned from integrateLinks}
-  \item{ode_parameters}{a list with the ODEs parameter information. Obtained with \link{createLBodeContPars}}
+  \item{ode_parameters}{a list with the ODEs parameter information.}
   \item{penFactor_k}{a penalty factor for the new integrated links obtained from the FEED algorithm and which are not present in the database (if the database was given). Default: penFactor_k = 100}
   \item{penFactor_tau}{a penalty factor for all the new nodes integrated in the PKN. Default: penFactor_tau = 1}
   \item{penFactorPIN_k}{a penalty factor for the new integrated links and which are present in the database (for the cases when the database was given). Default: penFactorPIN_k = 10}
