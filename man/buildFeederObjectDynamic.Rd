@@ -46,6 +46,6 @@ data(simData_toy,package="CNORfeeder")
 
 
 feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist,
-                                        indices = indices, database = database,
+                                        indices = NULL, database = NULL,
                                         DDN = TRUE, pathLength = 2)
 }
