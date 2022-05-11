@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id$
+#' @export
 makeBTables <-
 function(CNOlist, k=2, measErr=c(0.1, 0), timePoint=NA){
   #CNOlist should be a list as output from makeCNOlist

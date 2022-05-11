@@ -12,9 +12,8 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id$
-linksRanking <-
-function(CNOlist, measErr=c(0.1, 0), savefile=FALSE){
+#' @export
+linksRanking <- function(CNOlist, measErr=c(0.1, 0), savefile=FALSE){
   
   if ((class(CNOlist)=="CNOlist")==FALSE){
   	CNOlist = CellNOptR::CNOlist(CNOlist)

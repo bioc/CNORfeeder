@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id: mapDDN2model.R 853 2012-03-28 15:09:06Z eduati $
+#' @export
 mapDDN2model <-
 function(DDN,model,CNOlist,allInter=TRUE){
 	

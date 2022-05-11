@@ -29,7 +29,18 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0, simData 
   ##
   # Compacting cnolist
   if(class(cnolist)=="CNOlist"){
-    cnolist = compatCNOlist(object = cnolist)
+    cnolist = list(
+        namesCues=colnames(cnolist@cues),
+        namesStimuli=colnames(cnolist@stimuli),
+        namesInhibitors=colnames(cnolist@inhibitors),
+        namesSignals=colnames(cnolist@signals[[1]]),
+        timeSignals=getTimepoints(cnolist),
+        valueCues=cnolist@cues,
+        valueInhibitors=cnolist@inhibitors,
+        valueStimuli=cnolist@stimuli,
+        valueVariances=cnolist@variances,
+        valueSignals=cnolist@signals)
+    
   }
   
   ##

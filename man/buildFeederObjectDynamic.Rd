@@ -23,11 +23,7 @@ buildFeederObjectDynamic(model = model, cnolist = cnolist, indices = indices, da
   \item{pathLength}{a path length parameter for the maximal path length of additional interactions to search for in the database. Default: pathLength = 2}
   \item{k}{a parameter that determine the threshold of significancy of the effect of stimuli and inhibitors, default to 2}
   \item{measErr}{a 2 value vector (err1, err2) defining the error model of the data as sd^2 = err1^2 + (err2*data)^2, default to c(0.1, 0)}
-<<<<<<< HEAD
-  \item{timepoint}{time-points to be considered. By default set to NA, which means that the function will search for poorly fitted measurements at each time-point.}
-=======
   \item{timePoint}{time-points to be considered. By default set to NA, which means that the function will search for poorly fitted measurements at each time-point.}
->>>>>>> upstream/master
 }
 \details{
 The function identifies and proposes the new links to integrate in the PKN either either by means of the data-driven method from the FEED algorithm or from the provided database of interactions or from both of them.
@@ -50,10 +46,6 @@ data(simData_toy,package="CNORfeeder")
 
 
 feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist,
-<<<<<<< HEAD
-                                        indices = indices, database = database,
-=======
                                         indices = NULL, database = NULL,
->>>>>>> upstream/master
                                         DDN = TRUE, pathLength = 2)
 }

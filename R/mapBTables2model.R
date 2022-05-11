@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id$
+#' @export
 mapBTables2model <-
 function(BTable,model=NULL,optimRes=NA,allInter=TRUE, compressed=TRUE){
   # BTable are the Bolean Tables inferred from data using the function makeBTables

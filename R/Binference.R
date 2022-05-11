@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id$
+#' @export
 Binference <-
 function(CNOlist, mode="AIC", tempCheckOrders=10, maxIter=100, filename="BAYESIAN"){
   

@@ -12,7 +12,7 @@
 #  CNO website: http://www.cellnopt.org
 #
 ##############################################################################
-# $Id: gaBinaryT1W.R 2455 2012-09-20 09:20:00Z cokelaer $
+#' @export
 gaBinaryT1W<-function(
     CNOlist,
     model,
