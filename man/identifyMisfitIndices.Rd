@@ -37,6 +37,8 @@ data(ToyModel_Gene, package="CNORfeeder")
 data(CNOlistToy_Gene, package="CNORfeeder")
 data(indices,package="CNORfeeder")
 data(database, package="CNORfeeder")
+data(simData_toy,package="CNORfeeder")
+
 
 indices = identifyMisfitIndices(cnolist = cnolist, model = model,
                                 simData = simData, mseThresh = 0.05)

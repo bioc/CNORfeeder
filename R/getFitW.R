@@ -52,18 +52,22 @@ getFitW<-function(
 
     # if t0 is provided and we are interested in t1
     # then  score is based on t1 but also t0
-    if (tPt == 2 && any(is.na(simResultsT0))==FALSE){
-		# needed only for consistency between version 1.4 and following ones (following ones already cut the simList)
-		if (dim(simResultsT0)[2]!=length(indexList$signals)){
-			simResultsT0<-simResultsT0[,indexList$signals]
-		}
-		Diff0<-simResultsT0-CNOlist@signals[[1]]
+
+    if (tPt == 2){
+      if(any(is.na(simResultsT0))==FALSE){
+        # needed only for consistency between version 1.4 and following ones (following ones already cut the simList)
+        if (dim(simResultsT0)[2]!=length(indexList$signals)){
+          simResultsT0<-simResultsT0[,indexList$signals]
+        }
+        Diff0<-simResultsT0-CNOlist@signals[[1]]
+
         
-		Diff<-simResults-CNOlist@signals[[tPt]]
+        Diff<-simResults-CNOlist@signals[[tPt]]
         r0<-Diff0^2
         r<-Diff^2
         r <- rbind(r0, r) # we can concatenate because it's matricial computation.
         deviationPen<-sum(r[!is.na(r)])/2
+      }
     }# otherwise, no need to take to into account
     else{
         Diff<-simResults-CNOlist@signals[[tPt]]

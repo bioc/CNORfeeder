@@ -1,0 +1,8 @@
+CNORfeeder v1.27.0 (Release date: 2020-04-22)
+==============
+
+Changes:
+
+* Added the Dynamic-Feeder functionalities
+
+* Bug fixes: fixed issue with logic assignment to an object of length > 1

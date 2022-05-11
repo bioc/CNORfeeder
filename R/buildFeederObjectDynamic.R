@@ -79,16 +79,17 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist,
                                          fixed = TRUE)[[1]][2])
   }
   
-  gg <- graph_from_data_frame(d = as.data.frame(integrSIF[, c(1, 3)]),
+  gg <- igraph::graph_from_data_frame(d = as.data.frame(integrSIF[, c(1, 3)]),
                               directed = TRUE)
-  adj <- get.adjacency(graph = gg)
+  adj <- igraph::get.adjacency(graph = gg)
+
   idx2keep <- c()
   for(ii in 1:length(indices[[1]])){
     currMeas <- names(indices[[1]])[ii]
     currCues <- colnames(cnolist@cues)[which(cnolist@cues[indices[[1]][[ii]][2], ]==1)]
       spList <- list()
       for(jj in length(currCues)){
-        sP <- all_simple_paths(graph = gg, 
+        sP <- igraph::all_simple_paths(graph = gg, 
                                from = which(rownames(adj)==currCues[jj]), 
                                to = which(rownames(adj)==currMeas))
         if(length(sP)>0){
@@ -143,8 +144,9 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist,
     }
     
     df <- as.data.frame(x = database[, c(1, 3)])
-    gg <- graph_from_data_frame(d = df, directed = TRUE)
-    adj <- get.adjacency(gg)
+    gg <- igraph::graph_from_data_frame(d = df, directed = TRUE)
+    adj <- igraph::get.adjacency(gg)
+
     
     # all shortest paths connecting the measurements with the perturbed cues in the indices list
     sP_all <- list()
@@ -162,7 +164,8 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist,
             
             if((inhSet[jj]%in%rownames(adj)) && (measurement%in%rownames(adj))){
               
-              sP <- get.all.shortest.paths(graph = gg, from = which(rownames(adj)==inhSet[jj]), to = which(rownames(adj)==measurement))
+              sP <- igraph::get.all.shortest.paths(graph = gg, from = which(rownames(adj)==inhSet[jj]), to = which(rownames(adj)==measurement))
+
               
               if(length(sP[[1]]) > 0){
                 
