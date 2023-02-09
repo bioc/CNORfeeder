@@ -109,7 +109,7 @@ library(CNORfeeder)
 
 and the data
 
-<<getData, eval=FALSE>>=
+<<getData1, eval=FALSE>>=
 # load the data already formatted as CNOlist
 data(CNOlistDREAM,package="CellNOptR")
 # load the model (PKN) already in the CNO format
@@ -132,7 +132,7 @@ The three functions provided to infer a network strictly from data are the follo
 
 In this example, the FEED method (descirbed in \cite{FEED}) is applied. The inferred DDN is encoded in Boolean tables. For each protein, a Boolean table is inferred having one columns for each stimulus and one row for each inhibitor. If a stimulus produces a significant effect on the activity level of the protein this is codified with a 1 in the corresponding column, if also the inhibitor affects the protein there is a 2 in the corresponding cell. The sign of the regulation is coded in separate tables. Significance is assessed taking into account the experimental error. Parameter \emph{k} is the parameter which determines the threshold of significancy of the effect of stimuli and inhibitors, being multiplied by the measurement error in order to assess the relevance of a link. Tuning parameter \emph{k} allows to adjust the sparsity of the network.
 
-<<getData, eval=FALSE>>=
+<<getData2, eval=FALSE>>=
 BTable <- makeBTables(CNOlist=CNOlistDREAM, k=2, measErr=c(0.1, 0))
 @
 
@@ -146,7 +146,7 @@ Lrank <- linksRanking(CNOlist=CNOlistDREAM, measErr=c(0.1, 0), savefile=FALSE)
 \subsection{B. Compression - CellNOptR}
 The preprocessing step includes the compression of the network to exclude non-identifiable nodes; the full details of preprocessing the model can be found in the \emph{CellNOptR} package (see vignette for comprehensive explanation). 
 
-<<getData, eval=FALSE>>=
+<<getData3, eval=FALSE>>=
 model<-preprocessing(data=CNOlistDREAM, model=DreamModel)
 @
 
@@ -215,7 +215,7 @@ DreamT1opt<-gaBinaryT1W(CNOlist=CNOlistDREAM, model=modelIntegrWeight,
 
 The optimal model and the simulated and real data (shown in Figure~\ref{fig:training}) can be visualized using the following commands of \emph{CellNOptR}:
 
-<<results, eval=FALSE, results=hide>>=
+<<results1, eval=FALSE, results=hide>>=
 # model
 plotModel(model=modelIntegrWeight, CNOlist=CNOlistDREAM, bString=DreamT1opt$bString)
 # data
@@ -261,7 +261,7 @@ Through the figure below \ref{fig:dyn_pipeline}, we show a step by-step summary 
 
 Loading the necessary packages and the toy example containing 16 interactions and 15 species (of which 2 are stimulated, 2 are inhibited and 7 are measrued). Data was generated in-silico across each measuremnt at each perturbation experimental condition for 3 time-points (0, 10, 30).
 
-<<results, eval=FALSE, results=hide>>=
+<<results2, eval=FALSE, results=hide>>=
 # loading the necessary packages
 library(CellNOptR)
 library(MEIGOR)
@@ -296,7 +296,7 @@ plotCNOlist(CNOlist = cnolist)
 
 Optionally, the user can load pathway resources. Below, we show how we can load from \emph{OmniPath} \cite{omnipath} (by using \emph{OmniPathR} package) interactions from three other resources: \emph{SignaLink3}, \emph{PhosphoSite} and \emph{Signor}. We only retain those directed interactions which either are activatory or inhibitory. Besides the resource, users can choose to have interactions based on number of references, resources, etc. For more about this, please visit https://github.com/saezlab/OmnipathR.
 
-<<results, eval=FALSE, results=hide>>=
+<<results3, eval=FALSE, results=hide>>=
 ## Loading database
 data(database, package="CNORfeeder")
 ## Alternatively, users can download the database from Omnipath and retain only
@@ -318,7 +318,7 @@ data(database, package="CNORfeeder")
 
 Now, we perform the initial ODE analysis and generate the simulation results of our optimized model:
 
-<<results, eval=FALSE, results=hide>>=
+<<results4, eval=FALSE, results=hide>>=
 # set initial parameters (here parameters k and tau are optimised and n fixed to 3)
 ode_parameters=createLBodeContPars(model, LB_n = 1, LB_k = 0,
                                    LB_tau = 0, UB_n = 3, UB_k = 1, 
@@ -364,7 +364,7 @@ The figure below \ref{fig:initial_fit} shows how our optimized model fits the da
 
 As we can notice, our model performs worse for the NFKB1 measurement when EGF and PIK3CA are being perturbed. As a next step, we then try to identify poorly-fitted measurements. A measurement is considered as poorly-fitted on a specific experimental condition, if the deviation between experimental data and prediction of the initial model is higher than a threshold parameter \emph{mseThresh} which can be controlled by the user. On this case we have:
 
-<<results, eval=FALSE, results=hide>>=
+<<results5, eval=FALSE, results=hide>>=
 # Identifying the mis-fits (measurements with mse worse than 0.05)
 indices = identifyMisfitIndices(cnolist = cnolist, model = model, 
                                 simData = simData, mseThresh = 0.05)
@@ -374,7 +374,7 @@ The \emph{indices} object which is returned represents a list of indices telling
 
 Alternatively, users can bypass the initial training of the model and add new links through the FEED or database search regardless how well somee measurements were already fitted simply by setting simData=NULL. In this case:
 
-<<results, eval=FALSE, results=hide>>=
+<<results6, eval=FALSE, results=hide>>=
 # Identifying the mis-fits (measurements with mse worse than 0.05)
 indices = identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL)
 @
@@ -383,7 +383,7 @@ indices = identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL
 
 After identifying the poorly-fitted measurements, we then try to find possible links between corresponding cues and measurements and which can potentially identify mising mechanisms which yielded the poor prediction. The user can either do a search from the \emph{database} object, derivel the links from data-alone based on the \emph{FEED} algorithm, or both. Below we show an example about how we can infer interactions from both approaches and show the new expanded PKN with newly integrated links colored in purple \ref{fig:feeder_model}:
 
-<<results, eval=FALSE, results=hide>>=
+<<results7, eval=FALSE, results=hide>>=
 # interactions from the database and from the FEED algorithm which we want to integrate
 feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist, 
                                         indices = indices, database = database, 
@@ -409,7 +409,7 @@ Finally, we then optimize the integrated PKN to data and observe the effects of 
 
 1. By applying moderate penalty factors over the new links (200 times higher for interactions coming from \emph{FEED} \cite{CNORfeeder} and 10 times higher for interactions coming from \emph{database} compared to the weight applied over the interactions in the PKN) and nodes (10 times higher copared to the weight for the nodes present in the PKN) \ref{fig:post_fit_low}:
 
-<<results, eval=FALSE, results=hide>>=
+<<results8, eval=FALSE, results=hide>>=
 # interactions from the database and from the FEED algorithm which we want to integrate
 ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, 
                                    LB_k = 0, LB_tau = 0, UB_n = 3, 
@@ -434,7 +434,7 @@ plotLBodeFitness(cnolist = res1$CNOList, model = res1$`Integrated-Model`$model,
 
 2. By applying very high penalty factors over the new links and nodes compared to the weights assigned to the species in the PKN \ref{fig:post_fit_high}:
 
-<<results, eval=FALSE, results=hide>>=
+<<results9, eval=FALSE, results=hide>>=
 # interactions from the database and from the FEED algorithm which we want to integrate
 ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, 
                                    LB_k = 0, LB_tau = 0, UB_n = 3, 
