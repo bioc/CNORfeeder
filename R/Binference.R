@@ -17,7 +17,12 @@ Binference <-
 function(CNOlist, mode="AIC", tempCheckOrders=10, maxIter=100, filename="BAYESIAN"){
   
   # library(catnet)
-  requireNamespace("catnet")
+  if(!requireNamespace("catnet")){
+      stop("Binference requires the 'catnet' package. Unfortunately, catnet was removed from CRAN,
+           but the last version is available from CRAN archive: 
+           https://cran.r-project.org/src/contrib/Archive/catnet/catnet_1.16.1.tar.gz. Please download and install the 
+           package manually to use this functionality.")
+  }
 	
   if ((class(CNOlist)=="CNOlist")==FALSE){
 	CNOlist = CellNOptR::CNOlist(CNOlist)
