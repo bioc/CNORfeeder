@@ -39,11 +39,11 @@ This function transforms the data in a format compatible with catnet package, in
 }
 
 \examples{
-
+\dontrun{
 data(CNOlistDREAM,package="CellNOptR")
 DDN<-Binference(CNOlistDREAM, tempCheckOrders=10, maxIter=100,
                 filename="BAYESIAN")
 
-    
+}
 }
 
