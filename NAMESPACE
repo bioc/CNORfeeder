@@ -1,4 +1,5 @@
 import("CellNOptR", "graph")
+importFrom("CellNOptR", "preprocessing")
 
 export("Binference",
     "gaBinaryT1W",

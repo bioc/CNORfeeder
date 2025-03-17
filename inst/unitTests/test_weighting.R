@@ -12,7 +12,7 @@ test_weighting <- function() {
   
   BTable <- makeBTables(CNOlist=CNOlistDREAM, k=2, measErr=c(0.1, 0))
   
-  model<-preprocessing(data=CNOlistDREAM, model=DreamModel)
+  model<-CellNOptR::preprocessing(data=CNOlistDREAM, model=DreamModel)
   
   modelIntegr <- mapBTables2model(BTable=BTable,model=model,allInter=TRUE)
 	

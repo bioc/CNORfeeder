@@ -104,6 +104,7 @@ Phosphorylation of seven proteins (akt, erk12, ikb, jnk12, p38, hsp27, mek12) is
 First of all we load the library
 
 <<loadLib, eval=FALSE>>=
+library(CellNOptR)
 library(CNORfeeder)
 @
 
@@ -346,9 +347,9 @@ paramsSSm$bootstrap=F
 paramsSSm$SSpenalty_fac=0
 paramsSSm$SScontrolPenalty_fac=0
 ## Training of the initial model
-opt_pars=parEstimationLBode(cnolist, model, method="essm",
+opt_pars=parEstimationLBode(CNOlistToy_Gene, model, method="essm",
                             ode_parameters=ode_parameters, paramsSSm=paramsSSm)
-simData = plotLBodeFitness(cnolist = cnolist, model = model,
+simData = plotLBodeFitness(cnolist = CNOlistToy_Gene, model = model,
                            ode_parameters = opt_pars, transfer_function = 4)
 @
 
@@ -366,7 +367,7 @@ As we can notice, our model performs worse for the NFKB1 measurement when EGF an
 
 <<results5, eval=FALSE, results=hide>>=
 # Identifying the mis-fits (measurements with mse worse than 0.05)
-indices = identifyMisfitIndices(cnolist = cnolist, model = model, 
+indices = identifyMisfitIndices(cnolist = CNOlistToy_Gene, model = model, 
                                 simData = simData, mseThresh = 0.05)
 @
 
@@ -376,7 +377,7 @@ Alternatively, users can bypass the initial training of the model and add new li
 
 <<results6, eval=FALSE, results=hide>>=
 # Identifying the mis-fits (measurements with mse worse than 0.05)
-indices = identifyMisfitIndices(cnolist = cnolist, model = model, simData = NULL)
+indices = identifyMisfitIndices(cnolist = CNOlistToy_Gene, model = model, simData = NULL)
 @
 
 \subsection{III. Integration}
@@ -385,15 +386,15 @@ After identifying the poorly-fitted measurements, we then try to find possible l
 
 <<results7, eval=FALSE, results=hide>>=
 # interactions from the database and from the FEED algorithm which we want to integrate
-feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist, 
+feederObject = buildFeederObjectDynamic(model = model, cnolist = CNOlistToy_Gene, 
                                         indices = indices, database = database, 
                                         DDN = TRUE, pathLength = 2) # max path-length=2 
                                                                     # for database search
 
-integratedModel = integrateLinks(feederObject = feederObject, cnolist = cnolist, 
+integratedModel = integrateLinks(feederObject = feederObject, cnolist = CNOlistToy_Gene, 
                                  database = database)
 
-plotModel(model = integratedModel$model, CNOlist = cnolist, 
+plotModel(model = integratedModel$model, CNOlist = CNOlistToy_Gene, 
           indexIntegr = integratedModel$integLinksIdx)
 @
 
@@ -418,7 +419,7 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1,
                                    opt_n = FALSE, opt_k = TRUE,
                                    opt_tau = TRUE, random = TRUE)
 
-res1 = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, 
+res1 = runDynamicFeeder(cnolist = CNOlistToy_Gene, integratedModel = integratedModel, 
                         ode_parameters = ode_parameters, paramsSSm = paramsSSm,
                         penFactor_k = 2, penFactorPIN_k = 0.1, penFactor_tau = 1)
 
@@ -443,7 +444,7 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1,
                                    opt_n = FALSE, opt_k = TRUE,
                                    opt_tau = TRUE, random = TRUE)
 
-res2 = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, 
+res2 = runDynamicFeeder(cnolist = CNOlistToy_Gene, integratedModel = integratedModel, 
                         ode_parameters = ode_parameters, paramsSSm = paramsSSm, 
                         penFactor_k = 10000, penFactorPIN_k = 10000, 
                         penFactor_tau = 10000)
