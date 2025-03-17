@@ -40,7 +40,8 @@ P. E. Meyer, F. Lafitte and G. Bontempi (2008). MINET: An open source R/Biocondu
 }
 
 \examples{
-
+library(CellNOptR)
+library(CNORfeeder)
 data(CNOlistDREAM,package="CellNOptR")
 data(DreamModel,package="CellNOptR")
 PKNgraph<-sif2graph(model2sif(DreamModel))

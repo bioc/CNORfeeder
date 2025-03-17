@@ -45,7 +45,7 @@ data(CNOlistToy_Gene, package="CNORfeeder")
 data(simData_toy,package="CNORfeeder")
 
 
-feederObject = buildFeederObjectDynamic(model = model, cnolist = cnolist,
+feederObject = buildFeederObjectDynamic(model = model, cnolist = CNOlistToy_Gene,
                                         indices = NULL, database = NULL,
                                         DDN = TRUE, pathLength = 2)
 }

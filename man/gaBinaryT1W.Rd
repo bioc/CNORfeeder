@@ -98,7 +98,7 @@ C. Terfve, T. Cokelaer, F.Eduati
 \examples{
 data(CNOlistDREAM,package="CellNOptR")
 data(DreamModel,package="CellNOptR")
-model<-preprocessing(data=CNOlistDREAM, model=DreamModel)
+model<-CellNOptR::preprocessing(data=CNOlistDREAM, model=DreamModel)
 
 BTable <- makeBTables(CNOlist=CNOlistDREAM, k=2, measErr=c(0.1, 0))
 modelIntegr <- mapBTables2model(BTable=BTable,model=model,allInter=TRUE)

@@ -58,7 +58,7 @@ data(simData_toy,package="CNORfeeder")
 #                                    default_k = 0.5, default_tau = 0.01, opt_n = FALSE, opt_k = TRUE,
 #                                    opt_tau = TRUE, random = TRUE)
 #                                    
-# result = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel,
+# result = runDynamicFeeder(cnolist = CNOlistToy_Gene, integratedModel = integratedModel,
 #                           ode_parameters = ode_parameters, paramsSSm = paramsSSm,
 #                           penFactor_k = 2, penFactorPIN_k = 0.1, penFactor_tau = 1)
 #                               

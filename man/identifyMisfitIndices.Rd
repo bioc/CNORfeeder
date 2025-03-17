@@ -40,6 +40,6 @@ data(database, package="CNORfeeder")
 data(simData_toy,package="CNORfeeder")
 
 
-indices = identifyMisfitIndices(cnolist = cnolist, model = model,
+indices = identifyMisfitIndices(cnolist = CNOlistToy_Gene, model = model,
                                 simData = simData, mseThresh = 0.05)
 }

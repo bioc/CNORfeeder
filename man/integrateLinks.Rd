@@ -41,7 +41,7 @@ data(feederObject_toy,package="CNORfeeder")
 data(CNOlistToy_Gene, package="CNORfeeder")
 data(CNOlistToy_Gene, package="CNORfeeder")
 
-integratedModel = integrateLinks(feederObject = feederObject, cnolist = cnolist,
+integratedModel = integrateLinks(feederObject = feederObject, cnolist = CNOlistToy_Gene,
                                   database = NULL)
 
 }

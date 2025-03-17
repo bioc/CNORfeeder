@@ -44,7 +44,7 @@ BTable <- makeBTables(CNOlist=CNOlistDREAM, k=2, measErr=c(0.1, 0))
 
 # B. COMPRESSION - CellNOptR
 # preprocessing step
-model<-preprocessing(data=CNOlistDREAM, model=DreamModel)
+model<-CellNOptR::preprocessing(data=CNOlistDREAM, model=DreamModel)
 
 # C. INTEGRATION - CNORfeeder
 # integration with the compressed model

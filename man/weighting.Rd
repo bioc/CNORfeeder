@@ -48,7 +48,7 @@ data(CNOlistDREAM,package="CellNOptR")
 data(DreamModel,package="CellNOptR")
 data(UniprotIDdream,package="CNORfeeder")
 
-model<-preprocessing(data=CNOlistDREAM, model=DreamModel)
+model<-CellNOptR::preprocessing(data=CNOlistDREAM, model=DreamModel)
 
 BTable <- makeBTables(CNOlist=CNOlistDREAM, k=2, measErr=c(0.1, 0))
 modelIntegr <- mapBTables2model(BTable=BTable,model=model,allInter=TRUE)
