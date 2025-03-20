@@ -26,8 +26,8 @@
 #             A 2 value vector (err1, err2) defining the error model of the data as sd^2 = err1^2 + (err2*data)^2, default to c(0.1, 0)
 #             A parameter that determine the threshold of significancy of the effect of stimuli and inhibitors, default to 2
 
-buildFeederObjectDynamic <- function(model = model, cnolist = cnolist, 
-                                     indices = indices, database = NULL, 
+buildFeederObjectDynamic <- function(model = NULL, cnolist = NULL, 
+                                     indices = NULL, database = NULL, 
                                      DDN = TRUE, pathLength = 2, k = 2, 
                                      measErr = c(0.1, 0), timePoint = NA){
   
@@ -38,30 +38,19 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist,
          database of interactions or both in order to integrate the new links 
          in the PKN!")
   }
+ if(is.null(model)) stop("You should provide a model object")
+ if(is.null(cnolist)) stop("You should provide a cnolist object")
   
   ##
   # Identifying all the erroneous measurements
+  if(is.null(indices)) stop("You should provide an indices object")
   indMeas = unique(names(indices$indices))
   
   ##
   # Identifying the interactions from the FEED algorithm
-  # BTable <- makeBTables(CNOlist=cnolist, k=k, measErr=measErr)
+  
   BTable <- makeBTables(CNOlist = cnolist, k = k, measErr = measErr, 
                         timePoint = timePoint)
-  # for(ii in 1:length(BTable$tables)){
-  #   currMeas = names(BTable$tables)[ii]
-  #   if(!(currMeas%in%indMeas)){
-  #     for(jj in 1:nrow(BTable$tables[[ii]])){
-  #       for(kk in 1:ncol(BTable$tables[[ii]])){
-  #         
-  #         BTable$tables[[ii]][jj, kk] = 0
-  #         BTable$NotMatStim[[ii]][jj, kk] = 0
-  #         BTable$NotMatInhib[[ii]][jj, kk] = 0
-  #         
-  #       }
-  #     }
-  #   }
-  # }
   
   #doing integration with FEEDER
   modelIntegr <- mapBTables2model(BTable=BTable,model=model,allInter=TRUE)
@@ -81,11 +70,11 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist,
   
   gg <- igraph::graph_from_data_frame(d = as.data.frame(integrSIF[, c(1, 3)]),
                               directed = TRUE)
-  adj <- igraph::get.adjacency(graph = gg)
+  adj <- igraph::as_adjacency_matrix(graph = gg)
 
   idx2keep <- c()
-  for(ii in 1:length(indices[[1]])){
-    currMeas <- names(indices[[1]])[ii]
+  for(ii in seq_along(indices[[1]])){
+      currMeas <- names(indices[[1]])[ii]
     currCues <- colnames(cnolist@cues)[which(cnolist@cues[indices[[1]][[ii]][2], ]==1)]
       spList <- list()
       for(jj in length(currCues)){

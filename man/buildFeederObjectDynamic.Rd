@@ -44,8 +44,12 @@ data(ToyModel_Gene, package="CNORfeeder")
 data(CNOlistToy_Gene, package="CNORfeeder")
 data(simData_toy,package="CNORfeeder")
 
+model <- CellNOptR::preprocessing(data=CNOlistToy_Gene, model=model)
+
+indices = identifyMisfitIndices(cnolist = CNOlistToy_Gene, model = model,
+                                simData = simData, mseThresh = 0.05)
 
 feederObject = buildFeederObjectDynamic(model = model, cnolist = CNOlistToy_Gene,
-                                        indices = NULL, database = NULL,
+                                        indices = indices, database = NULL,
                                         DDN = TRUE, pathLength = 2)
 }
