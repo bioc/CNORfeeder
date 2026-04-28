@@ -1,7 +1,7 @@
 Package: CNORfeeder
 Type: Package
 Title: Integration of CellNOptR to add missing links
-Version: 1.52.0
+Version: 1.53.0
 Author: Federica Eduati [aut, cre]
 Maintainer: Attila Gabor <attila.gabor@uni-heidelberg.de>
 Description: This package integrates literature-constrained and data-driven methods
